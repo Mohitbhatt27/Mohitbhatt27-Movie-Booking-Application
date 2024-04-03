@@ -1,21 +1,40 @@
 import MovieCard from "../components/MovieCard/MovieCard";
 import "./Home.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { searchMovie } from "../apis/omdb";
 
 function Home() {
-  const movie = {
-    Title: "Shaitaan",
-    Year: "2024",
-    imdbID: "tt27744786",
-    Type: "movie",
-    Poster:
-      "https://m.media-amazon.com/images/M/MV5BYjczYjQ3ZTMtMDAwZi00Y2I2LWE2MTMtOGUyM2YyMThmYTFiXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg",
-  };
+  const [movieList, setMovieList] = useState([]);
+
+  async function downloadDefaultMovies(...args) {
+    const urls = args.map((name) => searchMovie(name));
+    const response = await axios.all(urls.map((url) => axios.get(url)));
+    const movies = response.map((movieResponse) => movieResponse.data.Search);
+    console.log([].concat(...movies));
+    setMovieList([].concat(...movies));
+  }
+
+  // useEffect(() => {
+  //   axios
+  //     .get("https://dummyapi.io/data/v1/user", {
+  //       headers: { "app-id": import.meta.env.VITE_APP_ID },
+  //     })
+  //     .then((response) => {
+  //       const responseObject = response.data;
+  //       setUsers([...responseObject.data]);
+  //     });
+  // }, []);
+
+  useEffect(() => {
+    downloadDefaultMovies("harry", "avengers", "batman");
+  }, []);
+
   return (
     <>
       <div className="movie-card-wrapper">
-        <MovieCard {...movie} />
-        <MovieCard {...movie} />
-        <MovieCard {...movie} />
+        {movieList.length > 0 &&
+          movieList.map((movie) => <MovieCard key={movie.imdbID} {...movie} />)}
       </div>
     </>
   );
