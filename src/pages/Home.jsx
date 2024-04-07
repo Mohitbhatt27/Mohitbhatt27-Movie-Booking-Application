@@ -11,20 +11,8 @@ function Home() {
     const urls = args.map((name) => searchMovie(name));
     const response = await axios.all(urls.map((url) => axios.get(url)));
     const movies = response.map((movieResponse) => movieResponse.data.Search);
-    console.log([].concat(...movies));
     setMovieList([].concat(...movies));
   }
-
-  // useEffect(() => {
-  //   axios
-  //     .get("https://dummyapi.io/data/v1/user", {
-  //       headers: { "app-id": import.meta.env.VITE_APP_ID },
-  //     })
-  //     .then((response) => {
-  //       const responseObject = response.data;
-  //       setUsers([...responseObject.data]);
-  //     });
-  // }, []);
 
   useEffect(() => {
     downloadDefaultMovies("harry", "avengers", "batman");
