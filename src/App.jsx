@@ -3,8 +3,6 @@ import MainRoutes from './routes/MainRoutes';
 import Navbar from './components/navbar/Navbar';
 
 function App() {
-
-  console.log(import.meta.env.VITE_API_KEY); 
   return (
     <>
       <Navbar/>
