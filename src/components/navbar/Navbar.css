@@ -43,13 +43,16 @@
   overflow: scroll;
   box-shadow: 10px 10px 10px 10px black;
   border: 1px solid var(--light-prime-gray);
+  
 }
 #result-list > .autocomplete-result {
   font-size: large;
+  font: 16px "Amazon Ember", Arial, sans-serif;
   letter-spacing: 0;
   margin-bottom: 1rem;
-  padding: 1rem;
+  padding: 7px 10px;
   border-bottom: 1px solid black;
+  color: #0F1111;
 }
 
 .movie-base-title > a {

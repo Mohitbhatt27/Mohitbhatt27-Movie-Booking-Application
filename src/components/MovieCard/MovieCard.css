@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid white;
-  padding: 20px 0px;
+  padding: 10px 0px;
   border-radius: 10px;
   align-items: center;
   background-color: whitesmoke;
@@ -14,11 +14,15 @@
 
 .movie-title {
   margin-top: 2rem;
-  font-size: x-large;
-  letter-spacing: 5px;
+  font: "Roboto";
+  cursor: pointer;
+  color: #222222
+
 }
 
 .movie-year , .movie-type {
   margin-top: 1rem;
-  font-size: larger;
+  font: "Roboto";
+  color: #666666;
 }
+
