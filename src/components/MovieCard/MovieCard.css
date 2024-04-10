@@ -6,7 +6,7 @@
   padding: 10px 0px;
   border-radius: 10px;
   align-items: center;
-  background-color: whitesmoke;
+  background-color: var(--card-background);
   text-align: center;
   margin-bottom: 3rem;
 
@@ -16,7 +16,7 @@
   margin-top: 2rem;
   font: "Roboto";
   cursor: pointer;
-  color: #222222
+  color: var(--font-color);
 
 }
 
