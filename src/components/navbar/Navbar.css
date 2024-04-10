@@ -1,6 +1,6 @@
 .navbar-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   border: 1px solid var(--dull-blue);
   padding: 1rem;
   align-items: center;
@@ -62,4 +62,15 @@
 
 .autocomplete-result:hover {
   background-color:gainsboro;
+}
+
+.theme-icon{
+  cursor: pointer;
+  font-size: x-large;
+}
+
+#movie-search-input{
+  outline: none;
+  color: var(--font-color-inverted);
+  font-size: large;
 }

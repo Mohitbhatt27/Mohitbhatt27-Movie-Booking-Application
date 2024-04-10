@@ -1,17 +1,45 @@
-import { useState } from "react";
-import "./Navbar.css";
+// React and related imports
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
+// Custom hooks
 import useMovieList from "../../hooks/useMovieList";
 import useDebounce from "../../hooks/useDebounce";
-import { Link, useNavigate } from "react-router-dom";
+
+// Context
+import ThemeContext from "../../context/ThemeContext";
+
+// External libraries
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+
+// CSS
+import "./Navbar.css";
+
+
+
 function Navbar() {
   const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { movieList } = useMovieList(searchTerm);
 
   const navigator = useNavigate();
+  const {theme,setTheme} = useContext(ThemeContext);
 
   function handleAutoCompleteClick(e, movieImdbId) {
     navigator(`/movie/${movieImdbId}`);
+  }
+
+  function handleToggleTheme() {
+    if (theme === "light") {
+      setTheme("dark");
+      localStorage.setItem("app-theme", "dark");
+    }
+
+    if (theme === "dark") {
+      setTheme("light");
+      localStorage.setItem("app-theme", "light");
+    }
   }
 
   return (
@@ -54,7 +82,9 @@ function Navbar() {
             ))}
         </div>
       </div>
-      <div>Theme</div>
+      <div onClick={handleToggleTheme}>
+      <FontAwesomeIcon className='theme-icon' icon = {theme=='light'?faMoon:faSun} />
+      </div>
     </div>
   );
 }

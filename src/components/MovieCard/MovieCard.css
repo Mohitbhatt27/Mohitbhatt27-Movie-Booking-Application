@@ -14,9 +14,9 @@
 
 .movie-title {
   margin-top: 2rem;
-  font: "Roboto";
   cursor: pointer;
   color: var(--font-color);
+  font-weight: bold;
 
 }
 
