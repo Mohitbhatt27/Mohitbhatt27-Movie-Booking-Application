@@ -16,15 +16,13 @@ import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 // CSS
 import "./Navbar.css";
 
-
-
 function Navbar() {
   const [isAutoCompleteVisible, setIsAutoCompleteVisible] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const { movieList } = useMovieList(searchTerm);
 
   const navigator = useNavigate();
-  const {theme,setTheme} = useContext(ThemeContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   function handleAutoCompleteClick(e, movieImdbId) {
     navigator(`/movie/${movieImdbId}`);
@@ -36,11 +34,29 @@ function Navbar() {
       localStorage.setItem("app-theme", "dark");
     }
 
-    if (theme === "dark") {
+    else{
       setTheme("light");
       localStorage.setItem("app-theme", "light");
     }
   }
+
+
+  const MovieTitle = ({ title }) => {
+    const wordToStyle = searchTerm;
+    const words = title.split(" ");
+    console.log (wordToStyle);
+  
+    return (
+      <div>
+        {words.map((word, index) => (
+          <span key={index} className={(word.toUpperCase() == wordToStyle.toUpperCase()) ? "styled-word" : "actual-auto"}>
+            {word + " "}
+          </span>
+        ))}
+      </div>
+    );
+  };
+  
 
   return (
     <div className="navbar-wrapper">
@@ -77,13 +93,16 @@ function Navbar() {
                 key={movie.imdbID}
                 className="autocomplete-result"
               >
-                {movie.Title}
+                <MovieTitle title={movie.Title} />
               </div>
             ))}
         </div>
       </div>
       <div onClick={handleToggleTheme}>
-      <FontAwesomeIcon className='theme-icon' icon = {theme=='light'?faMoon:faSun} />
+        <FontAwesomeIcon
+          className="theme-icon"
+          icon={theme == "light" ? faMoon : faSun}
+        />
       </div>
     </div>
   );
