@@ -1,11 +1,11 @@
-function useDebounce(callback, delay=1000) {
+function useDebounce(callback, delay = 1000) {
   let timerID;
-  return (...args)=>{
+  return (...args) => {
     clearTimeout(timerID);
-    timerID=setTimeout(() => {
+    timerID = setTimeout(() => {
       callback(...args);
     }, delay);
-  }
+  };
 }
 
 export default useDebounce;

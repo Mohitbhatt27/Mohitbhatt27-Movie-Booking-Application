@@ -1,23 +1,27 @@
-import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
+import Error from "../pages/Error";
+import { ErrorBoundary } from "react-error-boundary";
+import React, { Suspense } from "react";
+import ErrorFallback from "../components/ErrorFallback/ErrorFallback";
 
+// Lazy components
 const MovieDetails = React.lazy(() => import("../pages/MovieDetails"));
-const Error = React.lazy(() => import("../pages/Error"));
-import { Suspense } from "react";
 
 function MainRoutes() {
   return (
     <Routes>
       {/* routes contain multiple route */}
       <Route path="/" element={<Home />} />
-
+      {/* <Route path='/movie/:id' element={<MovieDetails />}></Route> */}
       <Route
         path="/movie/:id"
         element={
-          <Suspense fallback ={<div>Loading...</div>}>
-            <MovieDetails />
-          </Suspense>
+          <ErrorBoundary FallbackComponent={ErrorFallback} onReset={() => {}}>
+            <Suspense fallback={<div>loading.......</div>}>
+              <MovieDetails />
+            </Suspense>
+          </ErrorBoundary>
         }
       />
       <Route path="*" element={<Error />} />

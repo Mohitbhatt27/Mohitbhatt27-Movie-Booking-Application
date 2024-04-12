@@ -19,6 +19,12 @@ function MovieDetails() {
 
   useEffect(() => {
     downloadMovies();
+
+    /*mimicing a possible error during API calls so as to check the error boundary
+    const random = Math.random();
+    if (random > 0.5) {
+      throw "error";
+    }*/
   }, [id]);
 
   return (

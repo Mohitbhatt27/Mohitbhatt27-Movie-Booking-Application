@@ -9,7 +9,6 @@
   background-color: var(--card-background);
   text-align: center;
   margin-bottom: 3rem;
-
 }
 
 .movie-title {
@@ -17,12 +16,11 @@
   cursor: pointer;
   color: var(--font-color);
   font-weight: bold;
-
 }
 
-.movie-year , .movie-type {
+.movie-year,
+.movie-type {
   margin-top: 1rem;
   font: "Roboto";
   color: #666666;
 }
-

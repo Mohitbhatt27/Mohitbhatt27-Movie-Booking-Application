@@ -32,31 +32,34 @@ function Navbar() {
     if (theme === "light") {
       setTheme("dark");
       localStorage.setItem("app-theme", "dark");
-    }
-
-    else{
+    } else {
       setTheme("light");
       localStorage.setItem("app-theme", "light");
     }
   }
 
-
   const MovieTitle = ({ title }) => {
     const wordToStyle = searchTerm;
     const words = title.split(" ");
-    console.log (wordToStyle);
-  
+    // console.log (wordToStyle);
+
     return (
       <div>
         {words.map((word, index) => (
-          <span key={index} className={(word.toUpperCase() == wordToStyle.toUpperCase()) ? "styled-word" : "actual-auto"}>
+          <span
+            key={index}
+            className={
+              word.toUpperCase() == wordToStyle.toUpperCase()
+                ? "styled-word"
+                : "actual-auto"
+            }
+          >
             {word + " "}
           </span>
         ))}
       </div>
     );
   };
-  
 
   return (
     <div className="navbar-wrapper">
